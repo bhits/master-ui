@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {MasterUiApiUrlService} from "../../shared/master-ui-api-url.service";
 import {Observable} from "rxjs";
 import {UmsProfile} from "./ums-profile.model";
 import {SessionStorageService} from "./session-storage.service";
@@ -12,7 +12,7 @@ export class ProfileService {
   private UMS_PROFILE_KEY: string = 'c2s-ums-profile';
 
   constructor(private http: Http,
-              private c2sUiApiUrlService: C2sUiApiUrlService,
+              private c2sUiApiUrlService: MasterUiApiUrlService,
               private sessionStorageService: SessionStorageService) {
   }
 

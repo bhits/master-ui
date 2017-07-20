@@ -6,7 +6,7 @@ import {Http} from "@angular/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 import {ExceptionService} from "./exception.service";
-import {C2sUiApiUrlService} from "../shared/c2s-ui-api-url.service";
+import {MasterUiApiUrlService} from "../shared/master-ui-api-url.service";
 
 @Injectable()
 export class CustomTranslateService {
@@ -15,7 +15,7 @@ export class CustomTranslateService {
   constructor( private translateService: TranslateService,
                private profileService: ProfileService,
                private http: Http,
-               private c2sUiApiUrlService: C2sUiApiUrlService,
+               private c2sUiApiUrlService: MasterUiApiUrlService,
                private exceptionService: ExceptionService,) {
   }
 

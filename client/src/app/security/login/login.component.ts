@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthenticationService} from "../shared/authentication.service";
-import {Credentials} from "../shared/credentials.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
@@ -11,6 +10,7 @@ import {Profile} from "../../core/profile.model";
 import {UtilityService} from "../../shared/utility.service";
 import {Role} from "../shared/role.model";
 import {ActivatedRoute} from "@angular/router";
+import {Credentials} from "../shared/credentials.model";
 
 @Component({
   selector: 'c2s-login',
@@ -19,7 +19,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   public passwordInputType: string = "password";
-  credentials: Credentials;
   loginForm: FormGroup;
   showLoginBackendError: boolean = false;
   public roles: Role[];
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
               private utilityService: UtilityService,
               private route: ActivatedRoute) {
 
-    this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
       'role': [null, Validators.required],
       'username': [null, Validators.required],
@@ -46,21 +44,22 @@ export class LoginComponent implements OnInit {
   }
 
   login(value: any): void {
-    this.authenticationService.login(value.username, value.password)
+    this.authenticationService.login(new Credentials( value.username, value.password, value.role))
       .toPromise()
       .then(response => {
         this.showLoginBackendError = false;
-        this.authenticationService.onLoginSuccess(response);
-        this.authenticationService.getUserProfile()
-          .subscribe(
-            (uaaProfile) => {
-              let profile = this.tokenService.createProfileObject(uaaProfile);
-              this.tokenService.storeUserProfile(profile);
-              this.getUMSProfileAndSetDefaultLanguage(profile);
-            }
-            ,
-            (error) => this.handleLoginError
-          );
+        console.log(response);
+        // this.authenticationService.onLoginSuccess(response);
+        // this.authenticationService.getUserProfile()
+        //   .subscribe(
+        //     (uaaProfile) => {
+        //       let profile = this.tokenService.createProfileObject(uaaProfile);
+        //       this.tokenService.storeUserProfile(profile);
+        //       this.getUMSProfileAndSetDefaultLanguage(profile);
+        //     }
+        //     ,
+        //     (error) => this.handleLoginError
+        //   );
       }).catch(error => {
       console.log(error);
       this.showLoginBackendError = true;

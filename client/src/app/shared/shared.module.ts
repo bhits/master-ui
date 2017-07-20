@@ -8,7 +8,6 @@ import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 
 
-import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {UtilityService} from "./utility.service";
 import {ValidationService} from "./validation.service";
 import {ControlMessagesComponent} from "./control-messages/control-messages.component";
@@ -23,7 +22,6 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
     RouterModule
   ],
   declarations: [
-    UsPhoneNumberPipe,
     ControlMessagesComponent,
     ConsentProviderPipe,
     ShowHidePasswordComponent
@@ -36,7 +34,6 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
     Md2Module,
     Ng2PaginationModule,
     ReactiveFormsModule,
-    UsPhoneNumberPipe,
     ConsentProviderPipe,
     Md2Tooltip,
     ControlMessagesComponent,

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class C2sUiApiUrlService {
+export class MasterUiApiUrlService {
 
   urls: Map<string, string> = new Map(
     [
@@ -12,12 +12,12 @@ export class C2sUiApiUrlService {
       ["accountActivationErrorUrl", "/account/activation-error"],
 
       // External api Url maps
-      ["PcmBaseUrl", "/c2s-ui-api/pcm"],
-      ["PlsBaseUrl", "/c2s-ui-api/pls"],
-      ["VssBaseUrl", "/c2s-ui-api/vss"],
-      ["UmsBaseUrl", "/c2s-ui-api/ums"],
-      ["PhrBaseUrl", "/c2s-ui-api/phr"],
-      ["TryPolicyBaseUrl", "/c2s-ui-api/try-policy"]
+      ["PcmBaseUrl", "/master-ui-api/pcm"],
+      ["PlsBaseUrl", "/master-ui-api/pls"],
+      ["VssBaseUrl", "/master-ui-api/vss"],
+      ["UmsBaseUrl", "/master-ui-api/ums"],
+      ["PhrBaseUrl", "/master-ui-api/phr"],
+      ["TryPolicyBaseUrl", "/master-ui-api/try-policy"]
     ]
   );
 

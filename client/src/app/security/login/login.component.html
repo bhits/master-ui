@@ -9,7 +9,12 @@
 
     <form fxFlex [formGroup]="loginForm" class="login-form" novalidate>
 
-      <h2 class="m-t-none">Log in with your account.</h2>
+      <h2 class="m-t-none">I am a</h2>
+      <md-select placeholder="Select a role" formControlName="role" class="full-width font-size20">
+        <md-option *ngFor="let role of roles" [value]="role.code">
+          {{ role.name }}
+        </md-option>
+      </md-select>
 
       <md-input-container class="full-width m-b-xs">
         <input class="m-t-xs font-size15" mdInput placeholder="User name" type="email"

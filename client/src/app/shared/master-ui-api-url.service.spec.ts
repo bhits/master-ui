@@ -1,16 +1,16 @@
 import {TestBed, async, inject} from '@angular/core/testing';
-import {C2sUiApiUrlService} from './c2s-ui-api-url.service';
+import {MasterUiApiUrlService} from './master-ui-api-url.service';
 
-describe('C2sUiApiUrlService', () => {
+describe('MasterUiApiUrlService', () => {
   let service;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [C2sUiApiUrlService]
+      providers: [MasterUiApiUrlService]
     });
   });
 
-  beforeEach(inject([C2sUiApiUrlService], s => {
+  beforeEach(inject([MasterUiApiUrlService], s => {
     service = s;
   }));
   // test function

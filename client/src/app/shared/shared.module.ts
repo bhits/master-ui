@@ -12,7 +12,7 @@ import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {UtilityService} from "./utility.service";
 import {ValidationService} from "./validation.service";
 import {ControlMessagesComponent} from "./control-messages/control-messages.component";
-import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
+import {MasterUiApiUrlService} from "./master-ui-api-url.service";
 import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 
@@ -43,7 +43,7 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
     ShowHidePasswordComponent
   ],
   providers: [
-    C2sUiApiUrlService,
+    MasterUiApiUrlService,
     UtilityService,
     DatePipe,
     ValidationService

@@ -9,6 +9,8 @@ import {ProfileService} from "../shared/profile.service";
 import {UmsProfile} from "../shared/ums-profile.model";
 import {Profile} from "../../core/profile.model";
 import {UtilityService} from "../../shared/utility.service";
+import {Role} from "../shared/role.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'c2s-login',
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
   credentials: Credentials;
   loginForm: FormGroup;
   showLoginBackendError: boolean = false;
+  public roles: Role[];
 
   constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
@@ -27,16 +30,19 @@ export class LoginComponent implements OnInit {
               private tokenService: TokenService,
               private customTranslateService: CustomTranslateService,
               private profileService: ProfileService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private route: ActivatedRoute) {
 
     this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
+      'role': [null, Validators.required],
       'username': [null, Validators.required],
       'password': [null, Validators.required],
     });
   }
 
   ngOnInit() {
+      this.roles = this.route.snapshot.data['roles'];
   }
 
   login(value: any): void {

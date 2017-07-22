@@ -3,22 +3,20 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class MasterUiApiUrlService {
 
-  urls: Map<string, string> = new Map(
-    [
-      ["UaaBaseUrl", "/master-ui-api/uaa"],
+  urls: Map<string, string> = new Map([
+      ["MasterUiBaseUrl", "/master-ui-api/c2s"],
       ["UmsBaseUrl", "/master-ui-api/ums"],
-    ]
-  );
+  ]);
 
   constructor() {
   }
 
-  getUmsBaseUrl(): string {
-    return this.urls.get('UmsBaseUrl');
+  getMasterUiBaseUrl(): string {
+    return this.urls.get('MasterUiBaseUrl');
   }
 
-    getUaaBaseUrl(): string {
-        return this.urls.get('UaaBaseUrl');
-    }
+  getUmsBaseUrl(): string {
+        return this.urls.get('UmsBaseUrl');
+  }
 
 }

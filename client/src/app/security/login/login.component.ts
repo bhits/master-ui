@@ -27,9 +27,6 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private validationService: ValidationService,
               private tokenService: TokenService,
-              private customTranslateService: CustomTranslateService,
-              private profileService: ProfileService,
-              private utilityService: UtilityService,
               private route: ActivatedRoute) {
 
     this.loginForm = formBuilder.group({
@@ -48,18 +45,8 @@ export class LoginComponent implements OnInit {
       .toPromise()
       .then(response => {
         this.showLoginBackendError = false;
-        console.log(response);
-        // this.authenticationService.onLoginSuccess(response);
-        // this.authenticationService.getUserProfile()
-        //   .subscribe(
-        //     (uaaProfile) => {
-        //       let profile = this.tokenService.createProfileObject(uaaProfile);
-        //       this.tokenService.storeUserProfile(profile);
-        //       this.getUMSProfileAndSetDefaultLanguage(profile);
-        //     }
-        //     ,
-        //     (error) => this.handleLoginError
-        //   );
+        this.authenticationService.onLoginSuccess(response.json());
+
       }).catch(error => {
       console.log(error);
       this.showLoginBackendError = true;
@@ -70,18 +57,18 @@ export class LoginComponent implements OnInit {
     return this.validationService.isValidForm(formgroup);
   }
 
-  getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
-    this.profileService.getUMSProfile().subscribe(
-      (profile: UmsProfile) => {
-        let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
-        this.customTranslateService.addSupportedLanguages(localesCode);
-        this.customTranslateService.setDefaultLanguage(profile.userLocale);
-        this.profileService.setProfileInSessionStorage(profile);
-        this.authenticationService.onGetUserProfileSuccess(uaaProfile);
-      },
-      this.handleLoginError
-    )
-  }
+  // getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
+  //   this.profileService.getUMSProfile().subscribe(
+  //     (profile: UmsProfile) => {
+  //       let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
+  //       this.customTranslateService.addSupportedLanguages(localesCode);
+  //       this.customTranslateService.setDefaultLanguage(profile.userLocale);
+  //       this.profileService.setProfileInSessionStorage(profile);
+  //       this.authenticationService.onGetUserProfileSuccess(uaaProfile);
+  //     },
+  //     this.handleLoginError
+  //   )
+  // }
 
   handleLoginError(error: any) {
     this.tokenService.deleteAccessToken();

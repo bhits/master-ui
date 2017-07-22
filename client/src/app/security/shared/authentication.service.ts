@@ -14,7 +14,7 @@ import {Credentials} from "./credentials.model";
 
 @Injectable()
 export class AuthenticationService {
-  oauth2TokenUrl: string = this.masterUiApiUrlService.getUaaBaseUrl().concat("/users/login");
+  oauth2TokenUrl: string = this.masterUiApiUrlService.getMasterUiBaseUrl().concat("/login");
   CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
   HOME:string ='home';
   LOGIN:string ='login';
@@ -31,17 +31,9 @@ export class AuthenticationService {
     return this.http.post(this.oauth2TokenUrl,credentials);
   }
 
-  onLoginSuccess(response: Response){
-    this.tokenService.setAccessToken(response);
-  }
-
-  logout() {
-    this.tokenService.deleteAccessToken();
-    this.tokenService.deleteProfileToken();
-    this.tokenService.deleteProviderCount();
-    this.profileService.deleteProfileFromSessionStorage();
-    this.globalEventManagerService.setShowHeader(false);
-    this.router.navigate([this.LOGIN]);
+  onLoginSuccess(loginResponse: any){
+    this.tokenService.setAccessToken(loginResponse.accessToken);
+    this.tokenService.storeUserProfile(loginResponse.profile);
   }
 
   isLogin(){
@@ -57,29 +49,9 @@ export class AuthenticationService {
     return false;
   }
 
-  getUserProfile(){
-    return null;
-  }
-
   onGetUserProfileSuccess(profile:Profile){
     this.globalEventManagerService.setShowHeader(true);
     this.globalEventManagerService.setProfile(profile);
     this.router.navigate([this.HOME]);
-  }
-
-  private setHeaders():RequestOptions {
-    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded',
-                                'Authorization': 'Basic ' + this.CLIENT_ID } );
-    return new RequestOptions({ headers: headers });
-  }
-
-  private composeParameters(role: string, username: string, password:string): string{
-    let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('username', username);
-    urlSearchParams.append('password', password);
-    urlSearchParams.append('grant_type', 'password');
-    urlSearchParams.append('response_type', 'token');
-
-    return
   }
 }

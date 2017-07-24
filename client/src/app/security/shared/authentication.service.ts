@@ -37,21 +37,23 @@ export class AuthenticationService {
 
   login(credentials: Credentials): Observable<any> {
     return this.http.post(this.oauth2TokenUrl,credentials)
-                      .catch(this.exceptionService.handleError);;
+                      .catch(this.exceptionService.handleError);
   }
 
   onLoginSuccess(loginResponse: any){
     this.tokenService.setAccessToken(loginResponse.accessToken);
-    this.tokenService.storeUserProfile(loginResponse.profile);
+    this.tokenService.setProfileToken(loginResponse.profileToken);
+    this.tokenService.setUmsProfile(loginResponse.limitedProfileResponse);
+    this.tokenService.setMasterUiLoginUrl(loginResponse.masterUiLoginUrl);
   }
 
-  redirectBasedOnUserRole(role:string, homeUrl:string){
+  redirectBasedOnUserRole(role:string, clientHomeUrl:string){
     if(role === this.PATIENT_ROLE){
-      window.location.replace( homeUrl);
+        this.utilityService.redirectInSameTab(clientHomeUrl);
     }else if( role === this.PROVIDER_ROLE ){
-        window.location.replace( homeUrl);
+        this.utilityService.redirectInSameTab(clientHomeUrl);
     }else if( role === this.STAFF_USER_ROLE ){
-        window.location.replace( homeUrl);
+        this.utilityService.redirectInSameTab(clientHomeUrl);
     }
   }
 

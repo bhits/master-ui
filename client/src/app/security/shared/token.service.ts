@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import {Response} from "@angular/http";
 import {SessionStorageService} from "./session-storage.service";
 import {AccessToken} from "./access-token.model";
 import {Profile} from "../../core/profile.model";
+import {UmsLimitedProfile} from "./ums-limited-profile.model";
 
 
 @Injectable()
 export class TokenService {
   private ACCESS_TOKEN_KEY:string = 'c2s-access-token';
-  private USER_PROFILE_KEY:string = 'c2s-user-profile';
+  private USER_PROFILE_KEY:string = 'c2s-user-profile-token';
+  private UMS_PROFILE_KEY: string = 'c2s-ums-profile';
+  private MASTER_UI_LOGIN: string = 'c2s-master-ui-login';
 
   constructor(private sessionStorageService : SessionStorageService) { }
 
@@ -33,8 +35,16 @@ export class TokenService {
     return this.sessionStorageService.getItemFromSessionStorage(this.USER_PROFILE_KEY);
   }
 
-  storeUserProfile(userProfile:any){
+  setProfileToken(userProfile:any){
     this.sessionStorageService.setItemInSessionStorage(this.USER_PROFILE_KEY, userProfile);
+  }
+
+  setUmsProfile(profile: UmsLimitedProfile) {
+      this.sessionStorageService.setItemInSessionStorage(this.UMS_PROFILE_KEY, profile);
+  }
+
+  setMasterUiLoginUrl(masterUiLoginUrl:string){
+      this.sessionStorageService.setItemInSessionStorage(this.MASTER_UI_LOGIN, masterUiLoginUrl);
   }
 
   createProfileObject(uaaProfile:any): Profile{

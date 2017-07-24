@@ -45,13 +45,13 @@ export class AuthenticationService {
     this.tokenService.storeUserProfile(loginResponse.profile);
   }
 
-  redirectBasedOnUserRole(role:string){
+  redirectBasedOnUserRole(role:string, homeUrl:string){
     if(role === this.PATIENT_ROLE){
-      window.location.replace( "http://localhost/c2s-ui/home");
+      window.location.replace( homeUrl);
     }else if( role === this.PROVIDER_ROLE ){
-        window.location.replace( "http://localhost/provider-ui/home");
+        window.location.replace( homeUrl);
     }else if( role === this.STAFF_USER_ROLE ){
-        window.location.replace( "http://localhost/staff-ui/login");
+        window.location.replace( homeUrl);
     }
   }
 

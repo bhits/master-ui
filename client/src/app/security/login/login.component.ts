@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
                   this.showLoginBackendError = false;
                   let loginResponse:any = response.json();
                   this.authenticationService.onLoginSuccess( loginResponse );
-                  this.authenticationService.redirectBasedOnUserRole( value.role );
+                  this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["homeUrl"] );
               } ,(error)=>{
                   console.log(error);
                   this.showLoginBackendError = true;

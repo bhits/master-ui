@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
                   this.showLoginBackendError = false;
                   let loginResponse:any = response.json();
                   this.authenticationService.onLoginSuccess( loginResponse );
-                  this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["homeUrl"] );
+                  this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["c2sClientHomeUrl"] );
               } ,(error)=>{
                   console.log(error);
                   this.showLoginBackendError = true;
@@ -58,19 +58,6 @@ export class LoginComponent implements OnInit {
   isValidForm(formgroup: FormGroup) {
     return this.validationService.isValidForm(formgroup);
   }
-
-  // getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
-  //   this.profileService.getUMSProfile().subscribe(
-  //     (profile: UmsProfile) => {
-  //       let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
-  //       this.customTranslateService.addSupportedLanguages(localesCode);
-  //       this.customTranslateService.setDefaultLanguage(profile.userLocale);
-  //       this.profileService.setProfileInSessionStorage(profile);
-  //       this.authenticationService.onGetUserProfileSuccess(uaaProfile);
-  //     },
-  //     this.handleLoginError
-  //   )
-  // }
 
   handleLoginError(error: any) {
     this.tokenService.deleteAccessToken();

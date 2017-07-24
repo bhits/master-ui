@@ -41,16 +41,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(value: any): void {
-    this.authenticationService.login(new Credentials( value.username, value.password, value.role))
-      .toPromise()
-      .then(response => {
-        this.showLoginBackendError = false;
-        this.authenticationService.onLoginSuccess(response.json());
-
-      }).catch(error => {
-      console.log(error);
-      this.showLoginBackendError = true;
-    })
+      this.authenticationService.login(new Credentials( value.username, value.password, value.role))
+          .subscribe(
+              (response) =>{
+                  this.showLoginBackendError = false;
+                  let loginResponse:any = response.json();
+                  this.authenticationService.onLoginSuccess( loginResponse );
+                  this.authenticationService.redirectBasedOnUserRole( value.role );
+              } ,(error)=>{
+                  console.log(error);
+                  this.showLoginBackendError = true;
+              }
+          );
   }
 
   isValidForm(formgroup: FormGroup) {

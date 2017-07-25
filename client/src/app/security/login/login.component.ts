@@ -3,14 +3,12 @@ import {AuthenticationService} from "../shared/authentication.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
-import {CustomTranslateService} from "../../core/custom-translate.service";
-import {ProfileService} from "../shared/profile.service";
-import {UmsProfile} from "../shared/ums-profile.model";
-import {Profile} from "../../core/profile.model";
-import {UtilityService} from "../../shared/utility.service";
 import {Role} from "../shared/role.model";
 import {ActivatedRoute} from "@angular/router";
 import {Credentials} from "../shared/credentials.model";
+import {ConfigService} from "../../core/config.service";
+import {Config} from "src/app/core/shared/config.model";
+import {NotificationService} from "../../core/notification.service";
 
 @Component({
   selector: 'c2s-login',
@@ -22,11 +20,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   showLoginBackendError: boolean = false;
   public roles: Role[];
+  public PROVIDER_ROLE:string = "provider";
 
   constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
               private validationService: ValidationService,
               private tokenService: TokenService,
+              private configService: ConfigService,
+              private notificationService: NotificationService,
               private route: ActivatedRoute) {
 
     this.loginForm = formBuilder.group({
@@ -47,13 +48,33 @@ export class LoginComponent implements OnInit {
                   this.showLoginBackendError = false;
                   let loginResponse:any = response.json();
                   this.authenticationService.onLoginSuccess( loginResponse );
-                  this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["c2sClientHomeUrl"] );
+
+
+                  if(value.role === this.PROVIDER_ROLE ){
+                      this.configService.getProviderUIConfig().subscribe(
+                          (config: Config) => {
+                              this.configService.setConfigInSessionStorage(config);
+                              this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["c2sClientHomeUrl"] );
+                          },
+                          (err) => {
+                              this.notificationService.i18nShow("SHARED.CONFIGURATION_SERVICE_ERROR");
+                          }
+                      );
+                  }else{
+                      this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["c2sClientHomeUrl"] );
+                  }
+
+
+
+
               } ,(error)=>{
                   console.log(error);
                   this.showLoginBackendError = true;
               }
           );
   }
+
+
 
   isValidForm(formgroup: FormGroup) {
     return this.validationService.isValidForm(formgroup);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {SessionStorageService} from "./session-storage.service";
 import {AccessToken} from "./access-token.model";
-import {Profile} from "../../core/profile.model";
+import {Profile} from "../../core/shared/profile.model";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 
 

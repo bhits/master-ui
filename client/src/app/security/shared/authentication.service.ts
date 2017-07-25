@@ -5,7 +5,7 @@ import {Http} from "@angular/http";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
-import {Profile} from "../../core/profile.model";
+import {Profile} from "../../core/shared/profile.model";
 import {ProfileService} from "./profile.service";
 import {UmsProfile} from "./ums-profile.model";
 import {MasterUiApiUrlService} from "../../shared/master-ui-api-url.service";
@@ -37,7 +37,7 @@ export class AuthenticationService {
 
   login(credentials: Credentials): Observable<any> {
     return this.http.post(this.oauth2TokenUrl,credentials)
-                      .catch(this.exceptionService.handleError);
+                     .catch(this.exceptionService.handleError);
   }
 
   onLoginSuccess(loginResponse: any){

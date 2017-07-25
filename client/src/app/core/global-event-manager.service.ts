@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from "rxjs/Observable";
-import {Profile} from "./profile.model";
+import {Profile} from "./shared/profile.model";
 
 @Injectable()
 export class GlobalEventManagerService {

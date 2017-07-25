@@ -6,6 +6,7 @@ export class MasterUiApiUrlService {
   urls: Map<string, string> = new Map([
       ["MasterUiBaseUrl", "/master-ui-api/c2s"],
       ["UmsBaseUrl", "/master-ui-api/ums"],
+      ["ConfigBaseUrl", "/provider-ui-api/config"]
   ]);
 
   constructor() {
@@ -17,6 +18,10 @@ export class MasterUiApiUrlService {
 
   getUmsBaseUrl(): string {
         return this.urls.get('UmsBaseUrl');
+  }
+
+    getProviderUiApiConfigBaseUrl(): string {
+        return this.urls.get('ConfigBaseUrl');
   }
 
 }

@@ -12,7 +12,6 @@ import {UtilityService} from "./utility.service";
 import {ValidationService} from "./validation.service";
 import {ControlMessagesComponent} from "./control-messages/control-messages.component";
 import {MasterUiApiUrlService} from "./master-ui-api-url.service";
-import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 
 @NgModule({
@@ -23,7 +22,6 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
   ],
   declarations: [
     ControlMessagesComponent,
-    ConsentProviderPipe,
     ShowHidePasswordComponent
   ],
   exports: [
@@ -34,7 +32,6 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
     Md2Module,
     Ng2PaginationModule,
     ReactiveFormsModule,
-    ConsentProviderPipe,
     Md2Tooltip,
     ControlMessagesComponent,
     ShowHidePasswordComponent

@@ -7,7 +7,6 @@ import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {AuthenticationService} from "../security/shared/authentication.service";
 import {UnsecuredHeaderComponent} from "./unsecured-header/unsecured-header.component";
-import {TranslateModule} from "@ngx-translate/core";
 import {PageContentComponent} from "src/app/layout/page-content/page-content.component";
 
 @NgModule({
@@ -15,8 +14,7 @@ import {PageContentComponent} from "src/app/layout/page-content/page-content.com
     CommonModule,
     MaterialModule,
     SharedModule,
-    RouterModule,
-    TranslateModule
+    RouterModule
   ],
   declarations: [
     LogoComponent,

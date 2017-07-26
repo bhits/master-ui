@@ -50,11 +50,11 @@ export class ConfigService {
             this.setConfigInSessionStorage(config);
           },
           (err) => {
-            this.notificationService.i18nShow("SHARED.CONFIGURATION_SERVICE_ERROR");
+            this.notificationService.show("Could not load configurations from the server. Please go to the Login Page and try again.");
           }
         );
       }else{
-        this.notificationService.i18nShow("SHARED.CONFIGURATION_SERVICE_ERROR");
+        this.notificationService.show("Could not load configurations from the server. Please go to the Login Page and try again.");
       }
     }
   }

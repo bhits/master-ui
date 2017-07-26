@@ -4,7 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {Http, HttpModule} from "@angular/http";
 import {Md2Module} from "md2";
 import {MaterialModule} from "@angular/material";
-import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from "./app.component";
@@ -14,7 +13,6 @@ import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-g
 import {AuthenticationService} from "./security/shared/authentication.service";
 import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
-import {createTranslateLoader, CustomTranslateService} from "./core/custom-translate.service";
 
 
 @NgModule({
@@ -30,13 +28,7 @@ import {createTranslateLoader, CustomTranslateService} from "./core/custom-trans
     HttpModule,
     Md2Module,
     MaterialModule, // TODO: Move to core module - verify why it is not working now.
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [Http]
-      }
-    }),
+
     // C2S Modules
     CoreModule,
     LayoutModule,
@@ -45,9 +37,7 @@ import {createTranslateLoader, CustomTranslateService} from "./core/custom-trans
   providers: [
     CanActivateAuthGuardService,
     AuthenticationService,
-    GlobalEventManagerService,
-    TranslateService,
-    CustomTranslateService
+    GlobalEventManagerService
   ],
   bootstrap: [AppComponent]
 })

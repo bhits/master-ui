@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
                               this.authenticationService.redirectBasedOnUserRole( value.role, loginResponse["c2sClientHomeUrl"] );
                           },
                           (err) => {
-                              this.notificationService.i18nShow("SHARED.CONFIGURATION_SERVICE_ERROR");
+                              this.notificationService.show("Could not load configurations from the server. Please go to the Login Page and try again.");
                           }
                       );
                   }else{

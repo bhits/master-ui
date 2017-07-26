@@ -11,7 +11,6 @@ import {CoreModule} from "./core/core.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-guard.service";
 import {AuthenticationService} from "./security/shared/authentication.service";
-import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
 
 
@@ -36,8 +35,7 @@ import {LayoutModule} from "./layout/layout.module";
   ],
   providers: [
     CanActivateAuthGuardService,
-    AuthenticationService,
-    GlobalEventManagerService
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

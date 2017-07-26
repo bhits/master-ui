@@ -7,7 +7,6 @@ import {NotificationService} from "./notification.service";
 import {ExceptionService} from "./exception.service";
 import {SecurityModule} from "../security/security.module";
 import {TokenService} from "../security/shared/token.service";
-import {GlobalEventManagerService} from "./global-event-manager.service";
 import {BrowserService} from "./browser.service";
 import {SessionStorageService} from "../security/shared/session-storage.service";
 import {ConfigService} from "./config.service";
@@ -23,7 +22,6 @@ import {ConfigService} from "./config.service";
     BrowserService,
     ExceptionService,
     NotificationService,
-    GlobalEventManagerService,
     ConfigService,
     {
       provide: Http,

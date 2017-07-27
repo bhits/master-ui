@@ -63,7 +63,4 @@ export class ConfigService {
     this.sessionStorageService.setItemInSessionStorage(this.C2S_CONFIG_KEY, config);
   }
 
-  public deleteConfigInSessionStorage() {
-    this.sessionStorageService.removeItemFromSessionStorage(this.C2S_CONFIG_KEY);
-  }
 }

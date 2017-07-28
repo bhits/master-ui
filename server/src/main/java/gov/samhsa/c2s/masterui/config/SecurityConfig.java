@@ -24,13 +24,12 @@ public class SecurityConfig {
             @Override
             public void configure(HttpSecurity http) throws Exception {
                 if (securityProperties.isRequireSsl()) {
-                    http.authorizeRequests()
-                            // Security scope for accessing management endpoint
-                            .antMatchers(HttpMethod.GET, "/management/**").access("#oauth2.hasScope('staffUi.management')")
-                            .antMatchers(HttpMethod.GET, "/management/**").access("#oauth2.hasScope('providerUi.management')")
-                            .antMatchers(HttpMethod.POST, "/management/**").access("#oauth2.hasScope('providerUi.management')")
-                            .antMatchers(HttpMethod.POST, "/management/**").access("#oauth2.hasScope('staffUi.management')");
+                    http.requiresChannel().anyRequest().requiresSecure();
                 }
+                http.authorizeRequests()
+                        // Security scope for accessing management endpoint
+                        .antMatchers(HttpMethod.GET, "/management/**").access("#oauth2.hasScope('masterUI.management')")
+                        .antMatchers(HttpMethod.POST, "/management/**").access("#oauth2.hasScope('masterUI.management')");
             }
         };
     }

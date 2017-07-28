@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {SessionStorageService} from "./session-storage.service";
-import {AccessToken} from "./access-token.model";
+import {AuthorizationResponse} from "./access-token.model";
 import {Profile} from "../../core/shared/profile.model";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 
@@ -14,7 +14,7 @@ export class TokenService {
 
   constructor(private sessionStorageService : SessionStorageService) { }
 
-  getAccessToken(): AccessToken{
+  getAccessToken(): AuthorizationResponse{
     return this.sessionStorageService.getItemFromSessionStorage(this.ACCESS_TOKEN_KEY);
   }
 
@@ -59,8 +59,8 @@ export class TokenService {
     return profile;
   }
 
-  private createTokenObject(token:any): AccessToken{
-    let uaaToken = new AccessToken();
+  private createTokenObject(token:any): AuthorizationResponse{
+    let uaaToken = new AuthorizationResponse();
     uaaToken.accessToken = token.access_token;
     uaaToken.exspiresIn = token.expires_in;
     uaaToken.jti = token.jti;

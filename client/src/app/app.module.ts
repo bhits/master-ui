@@ -1,9 +1,7 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {Http, HttpModule} from "@angular/http";
-import {Md2Module} from "md2";
-import {MaterialModule} from "@angular/material";
+import {HttpModule} from "@angular/http";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from "./app.component";
@@ -23,10 +21,8 @@ import {LayoutModule} from "./layout/layout.module";
     //3rd Party modules
     BrowserAnimationsModule,
     BrowserModule,
-    FormsModule,
     HttpModule,
-    Md2Module,
-    MaterialModule, // TODO: Move to core module - verify why it is not working now.
+     // TODO: Move to core module - verify why it is not working now.
 
     // C2S Modules
     CoreModule,

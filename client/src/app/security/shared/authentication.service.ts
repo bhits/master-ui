@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import {Http} from "@angular/http";
 
-import {AccessToken} from "./access-token.model";
+import {AuthorizationResponse} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/shared/profile.model";
 import {ProfileService} from "./profile.service";
@@ -18,7 +18,7 @@ export class AuthenticationService {
   oauth2TokenUrl: string = this.masterUiApiUrlService.getMasterUiBaseUrl().concat("/login");
   PATIENT_ROLE:string = 'patient';
   PROVIDER_ROLE:string = 'provider';
-  STAFF_USER_ROLE:string = 'staffUser';
+  STAFF_ROLE:string = 'staffUser';
 
   constructor(private router: Router,
               private http: Http,
@@ -46,13 +46,13 @@ export class AuthenticationService {
         this.utilityService.redirectInSameTab(clientHomeUrl);
     }else if( role === this.PROVIDER_ROLE ){
         this.utilityService.redirectInSameTab(clientHomeUrl);
-    }else if( role === this.STAFF_USER_ROLE ){
+    }else if( role === this.STAFF_ROLE ){
         this.utilityService.redirectInSameTab(clientHomeUrl);
     }
   }
 
   isLogin(){
-    let oauth2Token:AccessToken =  this.tokenService.getAccessToken();
+    let oauth2Token:AuthorizationResponse =  this.tokenService.getAccessToken();
     let profile:Profile =  this.tokenService.getProfileToken();
 
     if(oauth2Token && profile){

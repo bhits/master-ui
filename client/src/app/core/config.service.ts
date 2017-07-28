@@ -29,14 +29,6 @@ export class ConfigService {
       .catch(this.exceptionService.handleError);
   }
 
-  public getBasicAuthorizationHeader(): Observable<string> {
-    const resourceUrl = this.masterUiApiUrlService.getProviderUiApiConfigBaseUrl().concat("/basicAuthorizationHeader");
-    return this.http.get(resourceUrl)
-      .map((resp: Response) => <Oauth2Client>(resp.json()))
-      .map(oauth2Client => oauth2Client.client.basicAuthorizationHeader)
-      .catch(this.exceptionService.handleError);
-  }
-
   public getConfigInSessionStorage(): Config {
     let config: Config = this.sessionStorageService.getItemFromSessionStorage(this.C2S_CONFIG_KEY);
     if (config != null) {

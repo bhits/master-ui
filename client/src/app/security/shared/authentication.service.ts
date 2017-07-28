@@ -42,11 +42,7 @@ export class AuthenticationService {
   }
 
   redirectBasedOnUserRole(role:string, clientHomeUrl:string){
-    if(role === this.PATIENT_ROLE){
-        this.utilityService.redirectInSameTab(clientHomeUrl);
-    }else if( role === this.PROVIDER_ROLE ){
-        this.utilityService.redirectInSameTab(clientHomeUrl);
-    }else if( role === this.STAFF_ROLE ){
+    if(role === this.PATIENT_ROLE || role === this.PROVIDER_ROLE  || role === this.STAFF_ROLE ){
         this.utilityService.redirectInSameTab(clientHomeUrl);
     }
   }

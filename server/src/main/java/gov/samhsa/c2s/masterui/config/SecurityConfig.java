@@ -3,6 +3,7 @@ package gov.samhsa.c2s.masterui.config;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -23,7 +24,12 @@ public class SecurityConfig {
             @Override
             public void configure(HttpSecurity http) throws Exception {
                 if (securityProperties.isRequireSsl()) {
-                    http.requiresChannel().anyRequest().requiresSecure();
+                    http.authorizeRequests()
+                            // Security scope for accessing management endpoint
+                            .antMatchers(HttpMethod.GET, "/management/**").access("#oauth2.hasScope('staffUi.management')")
+                            .antMatchers(HttpMethod.GET, "/management/**").access("#oauth2.hasScope('providerUi.management')")
+                            .antMatchers(HttpMethod.POST, "/management/**").access("#oauth2.hasScope('providerUi.management')")
+                            .antMatchers(HttpMethod.POST, "/management/**").access("#oauth2.hasScope('staffUi.management')");
                 }
             }
         };

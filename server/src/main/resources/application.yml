@@ -1,0 +1,14 @@
+server:
+  port: 8467
+logging:
+  file: /java/C2S_LOGS/master-ui/master-ui.log
+info:
+  component: Master UI
+---
+# enables ssl and adds /c2s-ui context path when activated
+spring.profiles: standalone-ssl
+spring:
+  profiles:
+    include: ssl-default
+server:
+  context-path: /master-ui

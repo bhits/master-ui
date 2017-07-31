@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
 import {Http} from "@angular/http";
 
 import {AuthorizationResponse} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/shared/profile.model";
-import {ProfileService} from "./profile.service";
 import {MasterUiApiUrlService} from "../../shared/master-ui-api-url.service";
 import {Credentials} from "./credentials.model";
 import {Observable} from "rxjs/Observable";
@@ -18,12 +16,11 @@ export class AuthenticationService {
   oauth2TokenUrl: string = this.masterUiApiUrlService.getMasterUiBaseUrl().concat("/login");
   PATIENT_ROLE:string = 'patient';
   PROVIDER_ROLE:string = 'provider';
-  STAFF_ROLE:string = 'staffUser';
+  STAFF_ROLE:string = 'staff';
 
-  constructor(private router: Router,
+  constructor(
               private http: Http,
               private tokenService: TokenService,
-              private profileService: ProfileService,
               private utilityService: UtilityService,
               private exceptionService: ExceptionService,
               private masterUiApiUrlService: MasterUiApiUrlService) {

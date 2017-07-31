@@ -1,4 +1,6 @@
 export class UmsProfile {
+  userId: number;
+  userAuthId: number;
   userLocale: string;
   firstName: string;
   lastName: string;

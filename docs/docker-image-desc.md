@@ -1,4 +1,5 @@
 # Short Description
+
 The Master User Interface (master-ui) is a single UI interface to login to Consent2Share(C2S) as a patient, provider or staff user account.
 
 # Full Description

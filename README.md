@@ -1,6 +1,6 @@
 # Consent2Share Master User Interface
 
-The Consent2Share Master User Interface is a generic user interface component of the Consent2share (C2S) application. Patients can use this application to manage his or her consents and providers electronically.
+The Master User Interface (master-ui) is a single UI interface to login to Consent2Share(C2S) as a patient, provider or staff user account.
 
 ## Build
 

@@ -1,5 +1,5 @@
 # Short Description
-The Master User Interface (master-ui) is a single UI interface to login to Consent2Share(C2S) as patient, provider or staff user account.
+The Master User Interface (master-ui) is a single UI interface to login to Consent2Share(C2S) as a patient, provider or staff user account.
 
 # Full Description
 
@@ -13,7 +13,7 @@ For more information about this image, the source code, and its history, please 
 
 # What is Master UI?
 
-The Consent2Share User Interface (master-ui) is a generic user interface component of the Consent2share (C2S)application. Patients can use this application to manage his or her electronic consents and providers.
+The Master User Interface (master-ui) is a single UI interface to login to Consent2Share(C2S) as a patient, provider or staff user account.
 
 For more information and related downloads for Consent2Share, please visit [Consent2Share](https://bhits-dev.github.io/consent2share/).
 
@@ -78,8 +78,8 @@ Documentation for this image is stored in the [bhitsdev/master-ui](https://githu
 
 ## Internationalization (i18n)
 
-Consent2Share provide support for Internationalization (i18n) in English and Spanish. English is the default language and is fully supported but 
-for Spanish, the translation still need to be completed.
+Consent2Share provide support for Internationalization (i18n) in English and Spanish. English is the default language and is fully supported, but 
+support for Spanish is not yet complete.
 
 ## Issues
 

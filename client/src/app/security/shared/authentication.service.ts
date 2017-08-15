@@ -16,6 +16,8 @@ export class AuthenticationService {
     PATIENT_ROLE: string = 'patient';
     PROVIDER_ROLE: string = 'provider';
     STAFF_ROLE: string = 'staff';
+    private ACCOUNT_LOCKED_MESSAGE:string = "Your account has been locked because of too many failed attempts to login.";
+    private BAD_CREDENTIAL_MESSAGE = "Bad credential Exception.";
 
     constructor(private http: Http,
                 private tokenService: TokenService,
@@ -52,12 +54,10 @@ export class AuthenticationService {
     }
 
     isAccountLocked(msg: string): boolean {
-        let lockedMsg = "Your account has been locked because of too many failed attempts to login.";
-        return msg === lockedMsg;
+        return msg === this.ACCOUNT_LOCKED_MESSAGE;
     }
 
     isBadCredendials(msg: string): boolean {
-        let badCredentialMsg = "Bad credential Exception.";
-        return msg === badCredentialMsg;
+        return msg === this.BAD_CREDENTIAL_MESSAGE;
     }
 }

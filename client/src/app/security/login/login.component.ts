@@ -72,9 +72,11 @@ export class LoginComponent implements OnInit {
                  let message:string = error.json()['message'];
                   if(this.authenticationService.isAccountLocked(message)){
                       this.showAccountLockedError = true;
+                      this.showBadCredentialError = false;
                       console.log(message);
                   }else if(this.authenticationService.isBadCredendials(message)){
                       this.showBadCredentialError = true;
+                      this.showAccountLockedError = false;
                       console.log(message);
                   }
 

@@ -8,7 +8,6 @@ import {UmsLimitedProfile} from "./ums-limited-profile.model";
 @Injectable()
 export class TokenService {
   private ACCESS_TOKEN_KEY:string = 'c2s-access-token';
-  private USER_PROFILE_KEY:string = 'c2s-user-profile-token';
   private UMS_PROFILE_KEY: string = 'c2s-ums-profile';
   private MASTER_UI_LOGIN: string = 'c2s-master-ui-login';
 
@@ -24,19 +23,6 @@ export class TokenService {
 
   deleteAccessToken(){
     this.sessionStorageService.removeItemFromSessionStorage(this.ACCESS_TOKEN_KEY);
-  }
-
-
-  deleteProfileToken(){
-    this.sessionStorageService.removeItemFromSessionStorage(this.USER_PROFILE_KEY);
-  }
-
-  getProfileToken(): Profile{
-    return this.sessionStorageService.getItemFromSessionStorage(this.USER_PROFILE_KEY);
-  }
-
-  setProfileToken(userProfile:any){
-    this.sessionStorageService.setItemInSessionStorage(this.USER_PROFILE_KEY, userProfile);
   }
 
   setUmsProfile(profile: UmsLimitedProfile) {

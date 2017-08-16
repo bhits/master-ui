@@ -32,7 +32,6 @@ export class AuthenticationService {
 
     onLoginSuccess(loginResponse: any) {
         this.tokenService.setAccessToken(loginResponse.accessToken);
-        this.tokenService.setProfileToken(loginResponse.profileToken);
         this.tokenService.setUmsProfile(loginResponse.limitedProfileResponse);
         this.tokenService.setMasterUiLoginUrl(loginResponse.masterUiLoginUrl);
     }
@@ -45,9 +44,8 @@ export class AuthenticationService {
 
     isLogin() {
         let oauth2Token: AuthorizationResponse = this.tokenService.getAccessToken();
-        let profile: Profile = this.tokenService.getProfileToken();
 
-        if (oauth2Token && profile) {
+        if (oauth2Token) {
             return true;
         }
         return false;

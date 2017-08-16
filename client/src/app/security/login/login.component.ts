@@ -18,7 +18,8 @@ import {NotificationService} from "../../core/notification.service";
 export class LoginComponent implements OnInit {
   public passwordInputType: string = "password";
   loginForm: FormGroup;
-  showLoginBackendError: boolean = false;
+  showBadCredentialError: boolean = false;
+  showAccountLockedError: boolean = false;
   public roles: Role[];
   public PROVIDER_ROLE:string = "provider";
 
@@ -44,9 +45,9 @@ export class LoginComponent implements OnInit {
   login(value: any): void {
       this.authenticationService.login(new Credentials( value.username, value.password, value.role))
           .subscribe(
-              (response) =>{
-                  this.showLoginBackendError = false;
-                  let loginResponse:any = response.json();
+              (loginResponse) =>{
+                  this.showBadCredentialError = false;
+                  this.showAccountLockedError = false;
                   this.authenticationService.onLoginSuccess( loginResponse );
 
 
@@ -68,8 +69,17 @@ export class LoginComponent implements OnInit {
 
 
               } ,(error)=>{
-                  console.log(error);
-                  this.showLoginBackendError = true;
+                 let message:string = error.json()['message'];
+                  if(this.authenticationService.isAccountLocked(message)){
+                      this.showAccountLockedError = true;
+                      this.showBadCredentialError = false;
+                      console.log(message);
+                  }else if(this.authenticationService.isBadCredendials(message)){
+                      this.showBadCredentialError = true;
+                      this.showAccountLockedError = false;
+                      console.log(message);
+                  }
+
               }
           );
   }
@@ -82,7 +92,7 @@ export class LoginComponent implements OnInit {
 
   handleLoginError(error: any) {
     this.tokenService.deleteAccessToken();
-    this.showLoginBackendError = true;
+    this.showBadCredentialError = true;
     console.log(error)
   }
 

@@ -1,6 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -10,7 +9,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-guard.service";
 import {AuthenticationService} from "./security/shared/authentication.service";
 import {LayoutModule} from "./layout/layout.module";
-
+import {getBaseHref} from "./shared/common-functions";
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,11 @@ import {LayoutModule} from "./layout/layout.module";
   ],
   providers: [
     CanActivateAuthGuardService,
-    AuthenticationService
+    AuthenticationService,
+      {
+          provide: APP_BASE_HREF,
+          useFactory: getBaseHref
+      }
   ],
   bootstrap: [AppComponent]
 })

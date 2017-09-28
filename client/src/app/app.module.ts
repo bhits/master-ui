@@ -9,8 +9,6 @@ import {AppRoutingModule} from "./app-routing.module";
 import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-guard.service";
 import {AuthenticationService} from "./security/shared/authentication.service";
 import {LayoutModule} from "./layout/layout.module";
-import {getBaseHref} from "./shared/common-functions";
-import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,11 +29,7 @@ import { APP_BASE_HREF } from '@angular/common';
   ],
   providers: [
     CanActivateAuthGuardService,
-    AuthenticationService,
-      {
-          provide: APP_BASE_HREF,
-          useFactory: getBaseHref
-      }
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
